@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ItemSize extends Model
 {
@@ -20,17 +22,17 @@ class ItemSize extends Model
         'availability_id',
     ];
 
-    public function item()
+    public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
     }
 
-    public function availability()
+    public function availability(): BelongsTo
     {
         return $this->belongsTo(Availability::class);
     }
 
-    public function userItemSizes()
+    public function userItemSizes(): HasMany
     {
         return $this->hasMany(UserItemSize::class);
     }

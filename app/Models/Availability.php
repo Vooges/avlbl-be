@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Availability extends Model
 {
@@ -15,7 +16,7 @@ class Availability extends Model
         'value'
     ];
 
-    public function itemSizes()
+    public function itemSizes(): BelongsToMany
     {
         return $this->belongsToMany(ItemSize::class);
     }

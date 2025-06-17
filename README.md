@@ -32,8 +32,13 @@ Built with Laravel 12.
    ```
 
 ### Testing
-
 To run the tests, execute the following command:
 ```sh
 php artisan test
+```
+
+### Code Analysis
+To run PHPStan, execute the following command:
+```sh
+composer phpstan
 ```

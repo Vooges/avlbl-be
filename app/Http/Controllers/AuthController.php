@@ -45,13 +45,11 @@ class AuthController extends Controller
                 'token_type' => 'Bearer'
             ]);
         } catch (ClientException $e){
-            dd($e);
-
             return response()->json(['error' => 'Invalid credentials provided.'], 422);
         }
     }
 
-    public function me(Request $request)
+    public function me(Request $request): JsonResponse
     {
         return response()->json(['user' => $request->user()]);
     }

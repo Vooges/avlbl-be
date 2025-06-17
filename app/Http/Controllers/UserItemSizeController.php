@@ -6,6 +6,7 @@ use App\Http\Requests\UserItemSizeStoreRequest;
 use App\Http\Resources\UserItemSizeResource;
 use App\Models\Item;
 use App\Models\UserItemSize;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ class UserItemSizeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Item $item, UserItemSizeStoreRequest $request)
+    public function store(Item $item, UserItemSizeStoreRequest $request): JsonResponse
     {
         $validated = $request->validated();
         $validated['user_id'] = Auth::id(); 
@@ -32,7 +33,7 @@ class UserItemSizeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item, UserItemSize $userItemSize)
+    public function destroy(Item $item, UserItemSize $userItemSize): Response
     {
         $userItemSize->delete();
 

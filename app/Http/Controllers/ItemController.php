@@ -10,6 +10,8 @@ use App\Http\Requests\ItemIndexRequest;
 use App\Http\Requests\ItemUpdateRequest;
 use App\Models\Availability;
 use App\Models\ItemSize;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 
@@ -23,7 +25,7 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ItemIndexRequest $request)
+    public function index(ItemIndexRequest $request): AnonymousResourceCollection
     {
         $validated = $request->validated();
 
@@ -62,7 +64,7 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ItemStoreRequest $request)
+    public function store(ItemStoreRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -83,7 +85,7 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Item $item)
+    public function show(Item $item): ItemResource
     {
         return new ItemResource($item->load('itemSizes.availability'));
     }
@@ -91,7 +93,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ItemUpdateRequest $request, Item $item)
+    public function update(ItemUpdateRequest $request, Item $item): ItemResource
     {
         $validated = $request->validated();
 
@@ -108,7 +110,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item)
+    public function destroy(Item $item): Response
     {
         $item->delete(); 
         
